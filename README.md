@@ -1,4 +1,22 @@
 # NAM interactions
+
+As NAM preserves information and makes it available, it interacts with a number of entities which are described below.
+
+| Entity |  Definition  |
+|--------|--------------|
+| PhysicalSource | This is source source, such as a Ministry or Bank or Museum or or Health centre, which holds physical objects, including paper, that it wishes NAM to preserve in some way   |
+| DigitalSource |  This is source source, such as a Ministry or Bank or Museum or or Health centre, which holds digital objects that it wishes NAM to preserve in some way   |
+| NAM |  The National Archives of Maldives aand its staff   |
+| IngestSpreadsheet | This is a spreadsheet (at the moment) described in  [1]    |
+| AccessionRegister | This is a database which contains details of everything that has come in to NAM, and could contain information about physical objects about which NAM has information. It may be integrated with the CatalogueDB    |
+| CatalogueDB | A set of tables in a Database, for example Postgres or MySql, running on a machine at NAM preferably, but synchronised to Eternal    |
+| EternalSystem | The OAISCloud preservation system    |
+| GeneralFrontEnd | A web interface to the CatalogueDB or possibly an application which runs on the user's machine and which communicates with the CataloguyeDb via REST. The interface is designed for a general user and has a number of limitations e.g. inability to download complete AIPs. It may be linked to a payment portal   |
+| SpecialisedFrontEnd | A web interface to the CatalogueDB or possibly an application which runs on the user's machine and which communicates with the CataloguyeDb via REST. The interface is for an archive specialist and has greater access to the internal information held by NAM   |
+
+## References
+[1] [Preservation Policy and Implementation Plan](https://archivesgovmv.sharepoint.com/:w:/r/sites/NAM-OAISCloud/Shared%20Documents/General/Deliverables/Preservation%20Policy%20and%20Implementation%20Plan.docx?d=w7c7f273a796d47508c685af8b7e387e3&csf=1&web=1&e=fuoJwX)
+
 ## Normal ingest of digital objects
 Much of this, apart from the Catalogue, is documented in the Records Management  document.
 
