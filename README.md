@@ -2,6 +2,10 @@
 ## Normal ingest of digital objects
 Much of this, apart from the Catalogue, is documented in the Records Management  document.
 
+The Access Register could be part of the CatalogueDB. Digital Objects which have been uploaded to Eternal would have this flagged in the appropriate field, to distinguish objects in Eternal from other objects e.g.
+1. objects which are waiting for additional information to be aquired before they can be uploaded to Eternal
+2. Objects which are not suitable for preservation, and so will not be uploaded to Eternal.
+
 ```mermaid
 sequenceDiagram
 participant PhysicalSource
@@ -24,7 +28,31 @@ GeneralFrontEnd->>CatalogueDB: Query holdings
 CatalogueDB->>GeneralFrontEnd: Display response
 ```
 
+## Digitisation of physical objects
+Papers can be scanned as PDFs and 3-D objects stored in a more complex file.
+
+Papers may be kept after digitisation e.g. old manuscripts. In this case that  physical paper will be treated as described below, and linked to the digital scan.
+
+```mermaid
+sequenceDiagram
+participant PhysicalSource
+participant DigitalSource
+actor NAM
+participant IngestSpreadsheet
+participant AccessionRegister
+participant CatalogueDB@{ "type": "database" }
+participant EternalSystem
+participant GeneralFrontEnd
+participant SpecialisedFrontEnd
+Note left of PhysicalSource: Digitisation of physical object
+PhysicalSource->>DigitalSource: Scan object
+Note right of DigitalSource: continue as before
+```
 ## Dealing with physical objects
+Physical objects which have not yet been, or which may never be, scanned,  are recorded in the Accession Register and the CatalogueDB.
+
+Because these are physical objects they have a physical location e.g. the records room at NAM, with rack and shelf location or even a geographical location such as an address or GPS location.
+
 ```mermaid
 sequenceDiagram
 participant PhysicalSource
@@ -67,29 +95,9 @@ loop
   GeneralFrontEnd->>CatalogueDB: Query holdings
   CatalogueDB->>GeneralFrontEnd: Display response
 end
-
-
 ```
 
-## Digitisation of hysical objects
-Papers can be scanned as PDFs and 3-D objects as complex file type.
 
-```mermaid
-sequenceDiagram
-participant PhysicalSource
-participant DigitalSource
-actor NAM
-participant IngestSpreadsheet
-participant AccessionRegister
-participant CatalogueDB@{ "type": "database" }
-participant EternalSystem
-participant GeneralFrontEnd
-participant SpecialisedFrontEnd
-Note left of PhysicalSource: Digitisation of physical object
-PhysicalSource->>DigitalSource: Scan object
-Note right of DigitalSource: continue as before
-
-```
 
 ## Archivists querying the catalogue
 Archivists will be able to see additional details
