@@ -193,5 +193,26 @@ The sequence is:
 1. A regular synchronisation task updates the copy of the CatalogueDB on Eternal
 2. If additional information has been created by Eternal during its preservation activities, then this can be inserted into the CatalogueDB for conveience.
 
+## Storage and access to AIPs held at NAM
+
+OAISCloud will create DVDs and send them to NAM. As long as the volume is not more thyan a few tens of TB then the information could be kept on Hard Disks or sven Solid State Disks at NAM, for use as a source of information if the network fails, and also as something tangable to show visitors.
+
+```mermaid
+sequenceDiagram
+participant PhysicalSource
+participant DigitalSource
+actor NAM
+participant IngestSpreadsheet
+participant AccessionRegister
+participant CatalogueDB@{ "type": "database" }
+participant EternalSystem
+participant GeneralFrontEnd
+participant SpecialisedFrontEnd
+EternalSystem->>NAM: Send DVDs containing AIPs to NAM<br/>and perhaps via network
+SpecialisedFrontEnd->>NAM: Request AIPs
+NAM->>SpecialisedFrontEnd: Send copy of AIp
+```
+
+
 Use https://www.mermditor.dev/editor for PDF
 
