@@ -26,14 +26,19 @@ NAM->>IngestSpreadsheet: Create entries with description of objects and location
 IngestSpreadsheet->>AccessionRegister: Add entries 
 IngestSpreadsheet->>CatalogueDB: Add entries to catalogue and indicate location of entries
 NAM->>CatalogueDB: Add catalogue information for searching if needed
-GeneralFrontEnd->>CatalogueDB: Query holdings
-CatalogueDB->>GeneralFrontEnd: Display response
+Note right of CatalogueDB: general users querying catalogue
+loop
+  GeneralFrontEnd->>CatalogueDB: Query holdings
+  CatalogueDB->>GeneralFrontEnd: Display response
+end
 Note left of PhysicalSource: Digitisation of physical object
 PhysicalSource->>DigitalSource: Scan object
 Note right of DigitalSource: continue as before
-Note left of PhysicalSource: Archivist view of the archive holdings
-SpecialisedFrontEnd->>CatalogueDB: Query holdings to see archival details
-CatalogueDB->>SpecialisedFrontEnd: Display response
+Note right of CatalogueDB: Archivist view of the archive holdings
+loop
+  SpecialisedFrontEnd->>CatalogueDB: Query holdings to see archival details
+  CatalogueDB->>SpecialisedFrontEnd: Display response
+end
 Note left of PhysicalSource: Backup catalogue to Eternal
 CatalogueDB-->>EternalSystem: Backup the catalogue entries
 EternalSystem-->>CatalogueDB: Update catalogue wrt preservation activities
