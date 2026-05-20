@@ -17,16 +17,28 @@ participant CatalogueDB@{ "type": "database" }
 participant EternalSystem
 participant GeneralFrontEnd
 participant SpecialisedFrontEnd
-DigitalSource->>NAM: Data plus Hashes
-NAM->>IngestSpreadsheet: Create entries
-IngestSpreadsheet->>AccessionRegister: Add entries 
-IngestSpreadsheet->>EternalSystem: Ingest for Preservation
-IngestSpreadsheet->>CatalogueDB: Add entries to catalogue and indicate that entries are in Eternal
-EternalSystem->>CatalogueDB: Add UUIDs for entries
-NAM->>CatalogueDB: Add catalogue information for searching
-GeneralFrontEnd->>CatalogueDB: Query holdings
-CatalogueDB->>GeneralFrontEnd: Display response
+DigitalSource->>NAM: 1. Data plus Hashes
+NAM->>IngestSpreadsheet: 2. Create entries
+IngestSpreadsheet->>AccessionRegister: 3. Add entries 
+IngestSpreadsheet->>EternalSystem: 4. Ingest for Preservation
+IngestSpreadsheet->>CatalogueDB: 5. Add entries to catalogue and indicate that entries are in Eternal
+EternalSystem->>CatalogueDB: 6. Add UUIDs for entries
+NAM->>CatalogueDB: 7. Add catalogue information for searching
+GeneralFrontEnd->>CatalogueDB: 8. Query holdings
+CatalogueDB->>GeneralFrontEnd: 9. Display response
 ```
+
+The steps can be described as follows:
+1. The source of the digital objects sends to NAM the digital objects plus the spreadsheet of hashes created using the small command line provided (assuming a Windows PC) either by sending by email or using OwnCloud
+2.  NAM then creates the ingest spreadsheet which includes all the information needed for preservation. The spreadsheet could also include the catalogue information which Eternal may or may not import
+3. The spreadsheet entries are appended to the Accession Register - this ensure that no matter what else happens, there is a record that these digital objects have been accepted by NAM.
+4. The digital objects are ingested into Eternal for preservation, accompanied by the spreadsheet which adds information needed to create the AIP.
+5. The spreadsheet entries are appended to the CatalogueDB database. Note that the Accession Register may also be part of this database. A flag is set to indicate that the digital objects have been ingested. The database should be accessible via one or more web interfaces.
+6. When Eternal has created the AIPs, the UUID, which identifies each AIP, is added to the CatalogueDB so that there is a link between the catalogue and the AIPs.
+7. Additional information may be added to the CatalogueDB by NAM in order to make the information more easily searchabl. TNA uses a 7 level set of entries.<br/> Note that a full text search is possible locally but this will require that SOLR, for example, is run locally to index all the digital objects as well as the "metadata".
+8. The CatalogueDB can be used to query the contents of NAM
+9. The CatalogueDB returns results
+  
 
 ## Digitisation of physical objects
 Papers can be scanned as PDFs and 3-D objects stored in a more complex file.
