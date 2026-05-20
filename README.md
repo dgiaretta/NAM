@@ -15,7 +15,8 @@ As NAM preserves information and makes it available, it interacts with a number 
 | SpecialisedFrontEnd | A web interface to the CatalogueDB or possibly an application which runs on the user's machine and which communicates with the CataloguyeDb via REST. The interface is for an archive specialist and has greater access to the internal information held by NAM   |
 
 ## References
-[1] [Preservation Policy and Implementation Plan](https://archivesgovmv.sharepoint.com/:w:/r/sites/NAM-OAISCloud/Shared%20Documents/General/Deliverables/Preservation%20Policy%20and%20Implementation%20Plan.docx?d=w7c7f273a796d47508c685af8b7e387e3&csf=1&web=1&e=fuoJwX)
+[1] [Preservation Policy and Implementation Plan](https://archivesgovmv.sharepoint.com/:w:/r/sites/NAM-OAISCloud/Shared%20Documents/General/Deliverables/Preservation%20Policy%20and%20Implementation%20Plan.docx?d=w7c7f273a796d47508c685af8b7e387e3&csf=1&web=1&e=fuoJwX)<br/>
+[2] [Records Management Plan](https://archivesgovmv.sharepoint.com/:w:/r/sites/NAM-OAISCloud/Shared%20Documents/General/Deliverables/Records%20Management%20Plan%20.docx?d=w8caf6c30a05e4838a27a2310d9d9e09d&csf=1&web=1&e=3ENuui)
 
 ## Normal ingest of digital objects
 Much of this, apart from the Catalogue, is documented in the Records Management  document.
@@ -50,7 +51,7 @@ The steps can be described as follows:
 4. The digital objects are ingested into Eternal for preservation, accompanied by the spreadsheet which adds information needed to create the AIP.
 5. The spreadsheet entries are appended to the CatalogueDB database. Note that the Accession Register may also be part of this database. A flag is set to indicate that the digital objects have been ingested. The database should be accessible via one or more web interfaces. NAM prefers that the CatalogueDB is held ona NAM controlled machine.
 6. When Eternal has created the AIPs, the UUID, which identifies each AIP, is added to the CatalogueDB so that there is a link between the catalogue and the AIPs.
-7. Additional information may be added to the CatalogueDB by NAM in order to make the information more easily searchable. TNA uses a 7 level set of entries, which NAM could use.<br/>Note that a full text search is possible locally but this will require that SOLR, for example, is run locally to index all the digital objects as well as the "metadata".
+7. Additional information may be added to the CatalogueDB by NAM in order to make the information more easily searchable [2]. TNA uses a 7 level set of entries, which NAM could use.<br/>Note that a full text search is possible locally but this will require that SOLR, for example, is run locally to index all the digital objects as well as the "metadata".
 8. The CatalogueDB can be used to query the contents of NAM
 9. The CatalogueDB returns results
   
