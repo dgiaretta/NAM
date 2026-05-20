@@ -53,9 +53,9 @@ participant CatalogueDB@{ "type": "database" }
 participant EternalSystem
 participant GeneralFrontEnd
 participant SpecialisedFrontEnd
-Note left of PhysicalSource: Digitisation of physical object
+Note left of PhysicalSource: Digitisation of<br/>physical object
 PhysicalSource->>DigitalSource: 1. Scan object
-Note right of DigitalSource: 2. continue as before
+Note right of DigitalSource: 2. continue<br/>as before
 ```
 
 The sequence is
@@ -81,7 +81,7 @@ participant EternalSystem
 participant GeneralFrontEnd
 participant SpecialisedFrontEnd
  
-Note left of PhysicalSource: Record that NAM has physical objects
+Note left of PhysicalSource: Record that<br/>NAM has<br/>physical objects
 PhysicalSource->>NAM: 1. Data about the physical objects plus Locations
 NAM->>IngestSpreadsheet: 2. Create entries with description of objects and location
 IngestSpreadsheet->>AccessionRegister: 3. Add entries 
@@ -115,7 +115,7 @@ participant CatalogueDB@{ "type": "database" }
 participant EternalSystem
 participant GeneralFrontEnd
 participant SpecialisedFrontEnd 
-Note right of CatalogueDB: General users querying catalogue
+Note right of CatalogueDB: General users<br/>querying catalogue
 loop
   GeneralFrontEnd->>1. CatalogueDB: Query holdings
   CatalogueDB->>GeneralFrontEnd: 2. Display response
@@ -141,7 +141,7 @@ participant CatalogueDB@{ "type": "database" }
 participant EternalSystem
 participant GeneralFrontEnd
 participant SpecialisedFrontEnd
-Note right of CatalogueDB: Archivist view of the archive holdings
+Note right of CatalogueDB: Archivist view<br/>of the archive holdings
 loop
   SpecialisedFrontEnd->>CatalogueDB: Query holdings to see archival details
   CatalogueDB->>SpecialisedFrontEnd: Display response
@@ -166,7 +166,7 @@ participant CatalogueDB@{ "type": "database" }
 participant EternalSystem
 participant GeneralFrontEnd
 participant SpecialisedFrontEnd
-Note left of PhysicalSource: Backup catalogue to Eternal
+Note left of CatalogueDB: Backup<br/>catalogue to<br/>Eternal
 CatalogueDB-->>EternalSystem: Backup the catalogue entries
 EternalSystem-->>CatalogueDB: Update catalogue wrt preservation activities
 ```
