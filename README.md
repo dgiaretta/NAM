@@ -121,6 +121,7 @@ end
 
 ## Synchronising the catalogue with Eternal
 Besides normal backups it would be sensible to synchronise the CatalogueDB with Eternal
+
 ```mermaid
 sequenceDiagram
 participant PhysicalSource
@@ -136,4 +137,5 @@ Note left of PhysicalSource: Backup catalogue to Eternal
 CatalogueDB-->>EternalSystem: Backup the catalogue entries
 EternalSystem-->>CatalogueDB: Update catalogue wrt preservation activities
 ```
+
 
