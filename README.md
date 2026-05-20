@@ -1,13 +1,15 @@
 # NAM
 ```mermaid
 sequenceDiagram
-participant Physical Source
-participant Digital Source
+participant PhysicalSource
+participant DigitalSource
 participant NAM
-participant Ingest Spreadsheet
-participant Accession Register
-participant Catalogue DB
-participant Eternal System
-participant General FrontEnd
-participant Specialised FrontEnd
-
+participant IngestSpreadsheet
+participant AccessionRegister
+participant CatalogueDB
+participant EternalSystem
+participant GeneralFrontEnd
+participant SpecialisedFrontEnd
+DigitalSource-->>NAM: Data plus Hashes
+NAM-->>IngestSpreadsheet: Create entries
+IngestSpreadsheet-->>EternalSystem: Ingest for Preservation
