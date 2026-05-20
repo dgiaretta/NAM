@@ -1,12 +1,12 @@
-# NAM
+# NAM interactions
 ```mermaid
 sequenceDiagram
 participant PhysicalSource
 participant DigitalSource
-participant NAM
+actor NAM
 participant IngestSpreadsheet
 participant AccessionRegister
-participant CatalogueDB
+participant CatalogueDB@{ "type": "database" }
 participant EternalSystem
 participant GeneralFrontEnd
 participant SpecialisedFrontEnd
@@ -34,5 +34,7 @@ Note right of DigitalSource: continue as before
 Note left of PhysicalSource: Archivist view of the archive holdings
 SpecialisedFrontEnd->>CatalogueDB: Query holdings to see archival details
 CatalogueDB->>SpecialisedFrontEnd: Display response
-
+Note left of PhysicalSource: Backup catalogue to Eternal
+CatalogueDB-->>EternalSystem: Backup the catalogue entries
+EternalSystem-->>CatalogueDB: Update catalogue wrt preservation activities
 
