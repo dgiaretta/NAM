@@ -8,10 +8,10 @@ As NAM preserves information and makes it available, it interacts with a number 
 | DigitalSource |  This is source source, such as a Ministry or Bank or Museum or or Health centre, which holds digital objects that it wishes NAM to preserve in some way   |
 | NAM |  The National Archives of Maldives aand its staff   |
 | IngestSpreadsheet | This is a spreadsheet (at the moment) described in  [1]    |
-| AccessionRegister | This is a database which contains details of everything that has come in to NAM, and could contain information about physical objects about which NAM has information. It may be integrated with the CatalogueDB    |
-| CatalogueDB | A set of tables in a Database, for example Postgres or MySql, running on a machine at NAM preferably, but synchronised to Eternal    |
+| AccessionRegister | This is a spreadsheet or database which contains details of everything that has come in to NAM, and could contain information about physical objects about which NAM has information. It may be integrated with the CatalogueDB    |
+| CatalogueDB | A set of tables in a Database, for example Postgres or MySql, running on a machine,  preferably controlled by NAM, but synchronised to Eternal    |
 | EternalSystem | The OAISCloud preservation system    |
-| GeneralFrontEnd | A web interface to the CatalogueDB or possibly an application which runs on the user's machine and which communicates with the CataloguyeDb via REST. The interface is designed for a general user and has a number of limitations e.g. inability to download complete AIPs. It may be linked to a payment portal   |
+| GeneralFrontEnd | A web interface to the CatalogueDB or possibly an application which runs on the user's machine and which communicates with the CataloguyeDB via REST. The interface is designed for a general user and has a number of limitations e.g. inability to download complete AIPs. It may be linked to a payment portal   |
 | SpecialisedFrontEnd | A web interface to the CatalogueDB or possibly an application which runs on the user's machine and which communicates with the CataloguyeDb via REST. The interface is for an archive specialist and has greater access to the internal information held by NAM   |
 
 ## References
@@ -136,8 +136,8 @@ participant GeneralFrontEnd
 participant SpecialisedFrontEnd 
 Note right of CatalogueDB: General users<br/>querying catalogue
 loop
-  GeneralFrontEnd->>CatalogueDB: Query holdings
-  CatalogueDB->>GeneralFrontEnd: 2. Display response
+  GeneralFrontEnd->>CatalogueDB: 1. Query holdings
+  CatalogueDB->>GeneralFrontEnd: 2. Response e.g. info to be displayed
 end
 ```
 
@@ -162,8 +162,8 @@ participant GeneralFrontEnd
 participant SpecialisedFrontEnd
 Note right of CatalogueDB: Archivist view<br/>of the archive holdings
 loop
-  SpecialisedFrontEnd->>CatalogueDB: Query holdings to see archival details
-  CatalogueDB->>SpecialisedFrontEnd: Display response
+  SpecialisedFrontEnd->>CatalogueDB: 1. Query holdings to see archival details
+  CatalogueDB->>SpecialisedFrontEnd: 2. Response e.g. info to be displayed
 end
 ```
 
@@ -172,7 +172,7 @@ The sequence is:
 2. The CatalogueDB front end responds to the archivist.
 
 ## Synchronising the catalogue with Eternal
-Besides normal backups it would be sensible to synchronise the CatalogueDB with Eternal
+Besides normal backups it would be sensible to synchronise the CatalogueDB with Eternal in some way
 
 ```mermaid
 sequenceDiagram
@@ -186,8 +186,8 @@ participant EternalSystem
 participant GeneralFrontEnd
 participant SpecialisedFrontEnd
 Note left of CatalogueDB: Backup<br/>catalogue to<br/>Eternal
-CatalogueDB-->>EternalSystem: Backup the catalogue entries
-EternalSystem-->>CatalogueDB: Update catalogue wrt preservation activities
+CatalogueDB-->>EternalSystem: 1. Backup the catalogue entries
+EternalSystem-->>CatalogueDB: 2. Update catalogue wrt preservation activities
 ```
 
 The sequence is:
@@ -209,10 +209,15 @@ participant CatalogueDB@{ "type": "database" }
 participant EternalSystem
 participant GeneralFrontEnd
 participant SpecialisedFrontEnd
-EternalSystem->>NAM: Send DVDs containing AIPs to NAM<br/>and perhaps via network
-SpecialisedFrontEnd->>NAM: Request AIPs
-NAM->>SpecialisedFrontEnd: Send copy of AIp
+EternalSystem->>NAM: 1. Send DVDs containing AIPs to NAM<br/>and perhaps via network
+SpecialisedFrontEnd->>NAM: 2. Request AIPs
+NAM->>SpecialisedFrontEnd: 3. Send copy of AIPs
 ```
+
+The steps are:
+1. OAISCloud sends DVDs containing copies of the AIPs (and associated information) to NAM, and could also send these via the network. NAM would add the information about its local copies to the catalogue.
+2. A user map (if allowed) request one or more AIPs.
+3. The request may go to Eternal or alternatively could be directed to the local copy, either on hard disk, or on a DVD (jukebox or manual retrieval).
 
 
 Use https://www.mermditor.dev/editor for PDF
