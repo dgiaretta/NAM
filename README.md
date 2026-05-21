@@ -186,8 +186,8 @@ participant EternalSystem
 participant GeneralFrontEnd
 participant SpecialisedFrontEnd
 Note left of CatalogueDB: Backup<br/>catalogue to<br/>Eternal
-CatalogueDB-->>EternalSystem: 1. Backup the catalogue entries
-EternalSystem-->>CatalogueDB: 2. Update catalogue wrt preservation activities
+CatalogueDB->>EternalSystem: 1. Backup the catalogue entries
+EternalSystem->>CatalogueDB: 2. Update catalogue wrt preservation activities
 ```
 
 The sequence is:
