@@ -136,7 +136,7 @@ participant GeneralFrontEnd
 participant SpecialisedFrontEnd 
 Note right of CatalogueDB: General users<br/>querying catalogue
 loop
-  GeneralFrontEnd->>1. CatalogueDB: Query holdings
+  GeneralFrontEnd->>CatalogueDB: Query holdings
   CatalogueDB->>GeneralFrontEnd: 2. Display response
 end
 ```
